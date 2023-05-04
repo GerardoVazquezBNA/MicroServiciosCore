@@ -4,13 +4,17 @@ using PracticaWebApi.Entidades;
 
 namespace PracticaWebApi.Controllers
 {
+    [ApiController]
+    [Route("cliente")]
     public class ClienteController : Controller
     {
         private static List<Cliente> clientes = new List<Cliente>();
 
+        
+
 
         [HttpGet]
-        public IEnumerable<Cliente> ListarClietnes()
+        public IEnumerable<Cliente> ListarClientes()
         {
             return clientes;
         }
@@ -18,26 +22,35 @@ namespace PracticaWebApi.Controllers
         [HttpGet("{id}")]
         public Cliente Get(int id)
         {
-            Cliente cliente = new Cliente();
-            cliente.Id = 1;
-            cliente.Nombre = "Gerardo";
-            cliente.Apellido = "Vazquez";
-            cliente.Cuil = "132245";
-            cliente.TipoDocumento = "DU";
-            cliente.NroDocumento = 38869662;
-            cliente.EsEmpleadoBNA = true;
-            cliente.PaisOrigen = "ARGENTINA";
-
-            clientes.Add(cliente);
-
             return clientes.FirstOrDefault(c => c.Id == id);
         }
 
         [HttpPost]
         public IActionResult AgregarCliente([FromBody] Cliente cliente)
         {
+            var clienteNuevo = clientes.FirstOrDefault(c => c.Id == cliente.Id);
+            if (clienteNuevo != null)
+            {
+                return ValidationProblem();
+            }
+            clienteNuevo = new Cliente();
+            clienteNuevo.Id = cliente.Id;
+            clienteNuevo.Nombre = cliente.Nombre;
+            clienteNuevo.Apellido = cliente.Apellido;
+            clienteNuevo.Cuil = cliente.Cuil;
+            clienteNuevo.TipoDocumento = cliente.TipoDocumento;
+            clienteNuevo.NroDocumento = cliente.NroDocumento;
+            clienteNuevo.EsEmpleadoBNA = cliente.EsEmpleadoBNA;
+            clienteNuevo.PaisOrigen = cliente.PaisOrigen;
+            clientes.Add(clienteNuevo);
+            return Ok();
+        }
+
+        [HttpPut]
+        public IActionResult ActualizarCliente([FromBody] Cliente cliente)
+        {
             var clienteExistente = clientes.FirstOrDefault(c => c.Id == cliente.Id);
-            if (clienteExistente == null)
+            if(clienteExistente == null)
             {
                 return NotFound();
             }
@@ -48,78 +61,11 @@ namespace PracticaWebApi.Controllers
             clienteExistente.NroDocumento = cliente.NroDocumento;
             clienteExistente.EsEmpleadoBNA = cliente.EsEmpleadoBNA;
             clienteExistente.PaisOrigen = cliente.PaisOrigen;
+
+
             return Ok();
         }
 
-        [HttpPost]
-        public IActionResult Post(Cliente cliente)
-        {
-            clientes.Add(cliente);
-            return Ok();
-
-        }
-
-        //// GET: ClienteController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        //// POST: ClienteController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: ClienteController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: ClienteController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: ClienteController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: ClienteController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        
     }
 }
