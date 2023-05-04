@@ -8,9 +8,11 @@ namespace PracticaWebApi.Controllers
     [Route("cliente")]
     public class ClienteController : Controller
     {
-        private static List<Cliente> clientes = new List<Cliente>();
-
-        
+        private static List<Cliente> clientes = new List<Cliente>{
+            new Cliente { Id = 1, Nombre = "Gerardo", Apellido= "Vazquez", NroDocumento=38869662, TipoDocumento ="DU" , Cuil= "20388696622", EsEmpleadoBNA = true, PaisOrigen= "ARGENTINA"},
+            new Cliente { Id = 2, Nombre = "Ezequiel", Apellido= "Goncalvez", NroDocumento=12345678, TipoDocumento ="DU" , Cuil= "204444442", EsEmpleadoBNA = true, PaisOrigen= "ARGENTINA"},
+            new Cliente { Id = 3, Nombre = "Diego", Apellido= "Yasil", NroDocumento=12345678, TipoDocumento ="DU" , Cuil= "2033333332", EsEmpleadoBNA = true, PaisOrigen= "ARGENTINA"}
+        };
 
 
         [HttpGet]
@@ -33,16 +35,17 @@ namespace PracticaWebApi.Controllers
             {
                 return ValidationProblem();
             }
-            clienteNuevo = new Cliente();
-            clienteNuevo.Id = cliente.Id;
-            clienteNuevo.Nombre = cliente.Nombre;
-            clienteNuevo.Apellido = cliente.Apellido;
-            clienteNuevo.Cuil = cliente.Cuil;
-            clienteNuevo.TipoDocumento = cliente.TipoDocumento;
-            clienteNuevo.NroDocumento = cliente.NroDocumento;
-            clienteNuevo.EsEmpleadoBNA = cliente.EsEmpleadoBNA;
-            clienteNuevo.PaisOrigen = cliente.PaisOrigen;
-            clientes.Add(clienteNuevo);
+            //clienteNuevo = new Cliente();
+            //clienteNuevo.Id = cliente.Id;
+            //clienteNuevo.Nombre = cliente.Nombre;
+            //clienteNuevo.Apellido = cliente.Apellido;
+            //clienteNuevo.Cuil = cliente.Cuil;
+            //clienteNuevo.TipoDocumento = cliente.TipoDocumento;
+            //clienteNuevo.NroDocumento = cliente.NroDocumento;
+            //clienteNuevo.EsEmpleadoBNA = cliente.EsEmpleadoBNA;
+            //clienteNuevo.PaisOrigen = cliente.PaisOrigen;
+            //clientes.Add(clienteNuevo);
+            clientes.Add(cliente);
             return Ok();
         }
 
