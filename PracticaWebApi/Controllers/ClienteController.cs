@@ -11,7 +11,8 @@ namespace PracticaWebApi.Controllers
         private static List<Cliente> clientes = new List<Cliente>{
             new Cliente { Id = 1, Nombre = "Gerardo", Apellido= "Vazquez", NroDocumento=38869662, TipoDocumento ="DU" , Cuil= "20388696622", EsEmpleadoBNA = true, PaisOrigen= "ARGENTINA"},
             new Cliente { Id = 2, Nombre = "Ezequiel", Apellido= "Goncalvez", NroDocumento=12345678, TipoDocumento ="DU" , Cuil= "204444442", EsEmpleadoBNA = true, PaisOrigen= "ARGENTINA"},
-            new Cliente { Id = 3, Nombre = "Diego", Apellido= "Yasil", NroDocumento=12345678, TipoDocumento ="DU" , Cuil= "2033333332", EsEmpleadoBNA = true, PaisOrigen= "ARGENTINA"}
+            new Cliente { Id = 3, Nombre = "Diego", Apellido= "Yasil", NroDocumento=12345678, TipoDocumento ="DU" , Cuil= "2033333332", EsEmpleadoBNA = true, PaisOrigen= "ARGENTINA"},
+            new Cliente { Id = 4, Nombre = "Leonardo", Apellido= "Etchegoyen", NroDocumento=12345678, TipoDocumento ="DU" , Cuil= "2033333332", EsEmpleadoBNA = true, PaisOrigen= "ARGENTINA"}
         };
 
 
