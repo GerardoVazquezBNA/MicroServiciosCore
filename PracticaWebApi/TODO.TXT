@@ -1,5 +1,7 @@
 .Agregar Serilog
 .Agregar BD para persistir datos
 .Agregar un nuevo servicio q se comunique con ESTE
+
+
 -----
 .Levantar ELK con DOKER y disparar los logs ahi.

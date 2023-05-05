@@ -70,6 +70,21 @@ namespace PracticaWebApi.Controllers
             return Ok();
         }
 
-        
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+
+            Cliente clienteElimnar = clientes.FirstOrDefault(c => c.Id == id);
+            if (clienteElimnar == null)
+            {
+                return ValidationProblem();
+            }
+         
+            clientes.Remove(clienteElimnar);
+            return Ok();
+        }
+
+
     }
 }
